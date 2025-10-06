@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: mayur-portfolio-api
+    env: node
+    plan: free
+    buildCommand: npm install
+    startCommand: node src/index.js
+    autoDeploy: true
+    envVars:
+      - key: NODE_VERSION
+        value: 18
+      - key: PORT
+        value: 10000
+      - key: MONGODB_URI
+        sync: false
+      - key: CORS_ORIGIN
+        sync: false
+
+
+
