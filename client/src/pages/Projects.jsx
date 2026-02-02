@@ -5,10 +5,37 @@ import TiltCard from '../components/TiltCard'
 import Reveal from '../components/Reveal'
 
 const fallbackProjects = [
-  { title: 'Face Mask Detection', desc: 'Real-time detection system using computer vision and machine learning for safety compliance.', tech: ['Python', 'OpenCV', 'NumPy'], link: '#', emoji: '😷' },
-  { title: 'To-Do List App', desc: 'Full CRUD application with authentication, persistence, and a clean responsive interface.', tech: ['React', 'Node', 'Express', 'MongoDB'], link: '#', emoji: '✅' },
-  { title: 'Student Feedback Analyzer', desc: 'NLP-powered sentiment analysis tool with visual dashboards for educational insights.', tech: ['Flask', 'Python', 'NLTK', 'Matplotlib'], link: '#', emoji: '📊' },
-  { title: 'Link-in-Bio Web App', desc: 'Feature-rich Linktree alternative with analytics, themes, and social integrations.', tech: ['React', 'Node', 'MongoDB', 'Express'], link: '#', emoji: '🔗' },
+  { 
+    title: 'Space Traffic Dashboard', 
+    desc: 'Real-time satellite monitoring and collision detection system with interactive world map and WebSocket updates.', 
+    tech: ['React', 'TypeScript', 'Node.js', 'Socket.IO', 'Tailwind'], 
+    link: 'https://space-traffic-dashboard.vercel.app', 
+    emoji: '🛰️',
+    highlights: ['Live satellite tracking', 'Collision detection alerts', 'Glass morphism UI']
+  },
+  { 
+    title: 'Crop & Fertilizer Recommendation', 
+    desc: 'ML-powered system that recommends optimal crops and fertilizers based on soil nutrients, pH, moisture, and climate data.', 
+    tech: ['Python', 'Scikit-learn', 'Pandas', 'NumPy', 'Streamlit'], 
+    link: 'https://github.com/MannyG3/Crop-and-fertilizer-recommendation', 
+    emoji: '🌾',
+    highlights: ['Random Forest model', '100% accuracy on test set', 'Soil analysis']
+  },
+  { 
+    title: 'Pokémon Search App', 
+    desc: 'Search Pokémon by name or ID using the PokéAPI. Displays stats, types, and sprites with a clean interface.', 
+    tech: ['HTML', 'CSS', 'JavaScript'], 
+    link: 'https://pokemonsearchapp-sandy.vercel.app', 
+    emoji: '⚡'
+  },
+  { 
+    title: 'Face Mask Detector', 
+    desc: 'Real-time face mask detection using webcam feed with Haar Cascade classifier and TensorFlow model. Alerts when no mask detected.', 
+    tech: ['Python', 'OpenCV', 'TensorFlow', 'NumPy'], 
+    link: 'https://github.com/MannyG3/Mask-Detector', 
+    emoji: '😷',
+    highlights: ['Real-time webcam detection', 'Audio alerts', 'Pre-trained model']
+  },
 ]
 
 function SearchIcon() {
