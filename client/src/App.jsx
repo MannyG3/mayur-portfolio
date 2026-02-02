@@ -54,78 +54,120 @@ function ThemeToggle() {
   }
 
   const isDark = theme === 'dark'
-  const iconClass = 'h-5 w-5 text-slate-600 dark:text-slate-300'
 
   return (
     <button
       type="button"
       onClick={toggleTheme}
       aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
-      className="inline-flex items-center justify-center h-9 w-9 rounded-md border border-slate-300 dark:border-white/10 bg-slate-100 dark:bg-white/5 hover:border-cyan-400/50 dark:hover:border-neon-cyan/40 hover:bg-slate-200 dark:hover:bg-white/10 transition-colors"
+      className="inline-flex items-center justify-center h-9 w-9 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 hover:border-fuchsia-400/30 transition-all duration-200"
     >
-      {isDark ? <MoonIcon className={iconClass} /> : <SunIcon className={iconClass} />}
+      {isDark ? (
+        <MoonIcon className="h-4 w-4 text-slate-300" />
+      ) : (
+        <SunIcon className="h-4 w-4 text-amber-400" />
+      )}
     </button>
   )
 }
 
 function Navbar() {
-  const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8)
-    onScroll()
-    window.addEventListener('scroll', onScroll)
-    return () => window.removeEventListener('scroll', onScroll)
-  }, [])
+
   const navLinkClass = ({ isActive }) =>
-    `px-3 py-2 rounded-md text-sm font-medium transition-colors hover:text-cyan-600 dark:hover:text-neon-cyan border border-transparent hover:border-cyan-400/30 dark:hover:border-neon-cyan/30 ${isActive ? 'text-cyan-600 dark:text-neon-cyan border-cyan-400/40 dark:border-neon-cyan/40' : 'text-slate-600 dark:text-slate-300'}`
+    `px-4 py-2 text-sm font-medium transition-all duration-200 ${
+      isActive
+        ? 'text-white'
+        : 'text-slate-400 hover:text-white'
+    }`
+
   return (
-    <header className={`sticky top-0 z-50 bg-slate-50/90 dark:bg-[#0a0a0f]/80 backdrop-blur-xl border-b border-slate-200 dark:border-white/10 transition-[height,background,transform] ${scrolled ? 'shadow-sm shadow-cyan-500/5' : ''}`}>
-      <div className={`container flex items-center justify-between ${scrolled ? 'h-12' : 'h-16'} transition-[height]`}>
-        <NavLink to="/" className="font-semibold text-slate-800 dark:text-slate-100 hover:text-cyan-600 dark:hover:text-neon-cyan transition-colors">Mayur Gund</NavLink>
-        <div className="flex items-center gap-2">
-          <nav className="hidden md:flex items-center gap-2">
-            <NavLink to="/" className={navLinkClass}>Home</NavLink>
+    <header className="fixed top-0 left-0 right-0 z-50 px-4 pt-4">
+      {/* Glass Pill Navbar */}
+      <div className="max-w-4xl mx-auto">
+        <nav className="relative flex items-center justify-between h-14 px-4 rounded-full bg-slate-900/60 dark:bg-slate-900/70 backdrop-blur-xl border border-white/10 shadow-[0_0_30px_rgba(0,0,0,0.3)] dark:shadow-[0_0_40px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.05)]">
+          {/* Subtle gradient overlay */}
+          <div className="absolute inset-0 rounded-full bg-gradient-to-r from-fuchsia-500/5 via-transparent to-cyan-500/5 pointer-events-none" />
+          
+          {/* Logo */}
+          <NavLink
+            to="/"
+            className="relative flex items-center gap-2 text-white font-semibold hover:text-fuchsia-400 transition-colors z-10"
+          >
+            <div className="relative h-8 w-8 rounded-lg overflow-hidden shadow-lg shadow-fuchsia-500/20">
+              <div className="absolute -inset-0.5 rounded-lg bg-gradient-to-br from-fuchsia-500 to-cyan-500" />
+              <img
+                src="/profile.png"
+                alt="Mayur Gund"
+                className="relative h-full w-full rounded-lg object-cover"
+              />
+            </div>
+            <span className="hidden sm:inline">Mayur Gund</span>
+          </NavLink>
+
+          {/* Center Nav Links (Desktop) */}
+          <div className="hidden md:flex items-center gap-1 relative z-10">
             <NavLink to="/about" className={navLinkClass}>About</NavLink>
             <NavLink to="/skills" className={navLinkClass}>Skills</NavLink>
             <NavLink to="/projects" className={navLinkClass}>Projects</NavLink>
             <NavLink to="/experience" className={navLinkClass}>Experience</NavLink>
-            <NavLink to="/contact" className={navLinkClass}>Contact</NavLink>
-          </nav>
-          <div className="hidden md:block"><ThemeToggle /></div>
-          <button aria-label="Toggle menu" aria-expanded={mobileOpen} onClick={()=>setMobileOpen(o=>!o)} className="md:hidden inline-flex items-center justify-center h-9 w-9 rounded border border-slate-300 dark:border-white/10 hover:border-cyan-400 dark:hover:border-neon-cyan/40 hover:bg-slate-100 dark:hover:bg-white/5 text-slate-600 dark:text-slate-300">
-            <span className="sr-only">Menu</span>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5">
-              {mobileOpen ? (
-                <path fillRule="evenodd" d="M5.47 5.47a.75.75 0 011.06 0L12 10.94l5.47-5.47a.75.75 0 111.06 1.06L13.06 12l5.47 5.47a.75.75 0 11-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 01-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 010-1.06z" clipRule="evenodd" />
-              ) : (
-                <path fillRule="evenodd" d="M3.75 5.25a.75.75 0 000 1.5h16.5a.75.75 0 000-1.5H3.75zm0 6a.75.75 0 000 1.5h16.5a.75.75 0 000-1.5H3.75zm0 6a.75.75 0 000 1.5h16.5a.75.75 0 000-1.5H3.75z" clipRule="evenodd" />
-              )}
-            </svg>
-          </button>
-        </div>
-      </div>
-      {/* Mobile panel */}
-      {mobileOpen && (
-        <div className="md:hidden border-t border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-[#0a0a0f]/95 backdrop-blur-xl">
-          <div className="container py-3">
-            <div className="flex items-center justify-between mb-2">
-              <ThemeToggle />
-              <button aria-label="Close menu" onClick={()=>setMobileOpen(false)} className="inline-flex items-center justify-center h-8 w-8 rounded hover:bg-slate-100 dark:hover:bg-white/5 text-slate-600 dark:text-slate-300">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5"><path fillRule="evenodd" d="M5.47 5.47a.75.75 0 011.06 0L12 10.94l5.47-5.47a.75.75 0 111.06 1.06L13.06 12l5.47 5.47a.75.75 0 11-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 01-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 010-1.06z" clipRule="evenodd"/></svg>
-              </button>
-            </div>
-            <nav className="grid gap-1">
-              <NavLink to="/" className={navLinkClass} onClick={()=>setMobileOpen(false)}>Home</NavLink>
-              <NavLink to="/about" className={navLinkClass} onClick={()=>setMobileOpen(false)}>About</NavLink>
-              <NavLink to="/skills" className={navLinkClass} onClick={()=>setMobileOpen(false)}>Skills</NavLink>
-              <NavLink to="/projects" className={navLinkClass} onClick={()=>setMobileOpen(false)}>Projects</NavLink>
-              <NavLink to="/experience" className={navLinkClass} onClick={()=>setMobileOpen(false)}>Experience</NavLink>
-              <NavLink to="/contact" className={navLinkClass} onClick={()=>setMobileOpen(false)}>Contact</NavLink>
-            </nav>
           </div>
-        </div>
-      )}
+
+          {/* Right Side: Theme + CTA */}
+          <div className="flex items-center gap-3 relative z-10">
+            <div className="hidden md:block">
+              <ThemeToggle />
+            </div>
+            <NavLink
+              to="/contact"
+              className="px-4 py-2 rounded-full bg-gradient-to-r from-fuchsia-500 to-fuchsia-600 text-white text-sm font-semibold hover:from-fuchsia-400 hover:to-fuchsia-500 hover:shadow-[0_0_20px_rgba(217,70,239,0.4)] transition-all duration-200"
+            >
+              Let's Talk
+            </NavLink>
+
+            {/* Mobile Menu Button */}
+            <button
+              aria-label="Toggle menu"
+              aria-expanded={mobileOpen}
+              onClick={() => setMobileOpen((o) => !o)}
+              className="md:hidden inline-flex items-center justify-center h-9 w-9 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 text-white transition-colors"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5">
+                {mobileOpen ? (
+                  <path fillRule="evenodd" d="M5.47 5.47a.75.75 0 011.06 0L12 10.94l5.47-5.47a.75.75 0 111.06 1.06L13.06 12l5.47 5.47a.75.75 0 11-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 01-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 010-1.06z" clipRule="evenodd" />
+                ) : (
+                  <path fillRule="evenodd" d="M3.75 5.25a.75.75 0 000 1.5h16.5a.75.75 0 000-1.5H3.75zm0 6a.75.75 0 000 1.5h16.5a.75.75 0 000-1.5H3.75zm0 6a.75.75 0 000 1.5h16.5a.75.75 0 000-1.5H3.75z" clipRule="evenodd" />
+                )}
+              </svg>
+            </button>
+          </div>
+        </nav>
+
+        {/* Mobile Menu Panel */}
+        {mobileOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            className="mt-2 rounded-2xl bg-slate-900/90 backdrop-blur-xl border border-white/10 shadow-xl overflow-hidden md:hidden"
+          >
+            <div className="p-4">
+              <div className="flex items-center justify-between mb-4">
+                <span className="text-xs uppercase tracking-wider text-slate-500">Navigation</span>
+                <ThemeToggle />
+              </div>
+              <nav className="grid gap-1">
+                <NavLink to="/" onClick={() => setMobileOpen(false)} className="px-4 py-3 rounded-xl text-white hover:bg-white/5 transition-colors">Home</NavLink>
+                <NavLink to="/about" onClick={() => setMobileOpen(false)} className="px-4 py-3 rounded-xl text-white hover:bg-white/5 transition-colors">About</NavLink>
+                <NavLink to="/skills" onClick={() => setMobileOpen(false)} className="px-4 py-3 rounded-xl text-white hover:bg-white/5 transition-colors">Skills</NavLink>
+                <NavLink to="/projects" onClick={() => setMobileOpen(false)} className="px-4 py-3 rounded-xl text-white hover:bg-white/5 transition-colors">Projects</NavLink>
+                <NavLink to="/experience" onClick={() => setMobileOpen(false)} className="px-4 py-3 rounded-xl text-white hover:bg-white/5 transition-colors">Experience</NavLink>
+                <NavLink to="/contact" onClick={() => setMobileOpen(false)} className="px-4 py-3 rounded-xl text-white hover:bg-white/5 transition-colors">Contact</NavLink>
+              </nav>
+            </div>
+          </motion.div>
+        )}
+      </div>
     </header>
   )
 }
@@ -221,7 +263,7 @@ export default function App() {
       </Helmet>
       <Backdrop />
       <Navbar />
-      <main className="container py-6">
+      <main className="container pt-24 pb-6">
           <Suspense fallback={<div className="py-20 text-center text-slate-400">Loading…</div>}>
             <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}>
               <Routes>
