@@ -16,7 +16,7 @@ export function SectionHeader({ eyebrow, title, subtitle }) {
 
 export function Badge({ children }) {
   return (
-    <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-brand-400/10 text-brand-600 dark:text-brand-300 border border-brand-400/30 text-xs">{children}</span>
+    <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-cyan-500/10 text-neon-cyan border border-cyan-400/30 text-xs">{children}</span>
   )
 }
 

@@ -2,21 +2,56 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Smooth font rendering */
 html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
 
-/* Smooth theme transition when toggling */
 :root.theme-transition *, :root.theme-transition *::before, :root.theme-transition *::after {
   transition-property: background-color, border-color, color, fill, stroke;
   transition-duration: 300ms;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Reusable utilities */
+/* Modern dark: glassmorphism + neon glow */
+.glass {
+  @apply bg-slate-100/70 dark:bg-white/5 border border-slate-200/80 dark:border-white/10 backdrop-blur-xl;
+}
+
+.glass-neon-cyan {
+  @apply bg-cyan-500/5 border border-cyan-400/30 backdrop-blur-xl;
+  box-shadow: 0 0 30px rgba(34, 211, 238, 0.15);
+}
+
+.glass-neon-green {
+  @apply bg-emerald-500/5 border border-emerald-400/30 backdrop-blur-xl;
+  box-shadow: 0 0 30px rgba(74, 222, 128, 0.15);
+}
+
+/* Interactive hover: glowing borders */
+.hover-glow-cyan {
+  @apply transition-all duration-300;
+}
+.hover-glow-cyan:hover {
+  box-shadow: 0 0 20px rgba(34, 211, 238, 0.4), 0 0 40px rgba(34, 211, 238, 0.2);
+  border-color: rgba(34, 211, 238, 0.5);
+}
+
+.hover-glow-magenta:hover {
+  box-shadow: 0 0 20px rgba(232, 121, 249, 0.4), 0 0 40px rgba(232, 121, 249, 0.2);
+  border-color: rgba(232, 121, 249, 0.5);
+}
+
+/* 12-column grid */
+.grid-12 {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+@media (max-width: 767px) {
+  .grid-12 { grid-template-columns: 1fr; }
+}
+
 .card {
-  /* Light */
   @apply bg-white border border-slate-200 shadow-sm;
-  /* Dark */
   @apply dark:bg-slate-900/40 dark:border-white/10 backdrop-blur;
 }
 

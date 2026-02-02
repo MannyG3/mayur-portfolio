@@ -20,10 +20,10 @@ export default function Contact() {
   }
 
   return (
-    <section className="py-16">
-      <h2 className="text-2xl font-bold">Contact</h2>
-      <TiltCard>
-        <form onSubmit={handleSubmit} className="mt-6 card p-6 rounded-xl max-w-xl">
+    <section className="py-16 flex flex-col items-center text-center">
+      <h2 className="text-2xl font-bold text-slate-900 dark:text-slate-100">Contact</h2>
+      <TiltCard className="w-full max-w-xl mt-6">
+        <form onSubmit={handleSubmit} className="card p-6 rounded-xl w-full text-left">
           <div className="grid gap-4">
             <input required value={form.name} onChange={e=>setForm(f=>({...f, name: e.target.value}))} placeholder="Your Name" className="input" />
             <input required type="email" value={form.email} onChange={e=>setForm(f=>({...f, email: e.target.value}))} placeholder="Your Email" className="input" />
@@ -36,8 +36,8 @@ export default function Contact() {
           </div>
         </form>
       </TiltCard>
-      <div className="mt-6 text-sm">
-        Or email directly: <a className="underline hover:text-brand-400" href="mailto:mayurgund3333@gmail.com">mayurgund3333@gmail.com</a>
+      <div className="mt-6 text-sm text-slate-600 dark:text-slate-400">
+        Or email directly: <a className="underline hover:text-cyan-600 dark:hover:text-neon-cyan" href="mailto:mayurgund3333@gmail.com">mayurgund3333@gmail.com</a>
       </div>
     </section>
   )

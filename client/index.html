@@ -6,23 +6,25 @@
     <meta name="theme-color" content="#0ea5e9" />
     <meta name="description" content="Portfolio of Mayur Gund — Full Stack Developer, Educator, AI Enthusiast" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
     <title>Mayur Gund — Portfolio</title>
     <script>
-      // Persisted theme: add 'dark' early to avoid FOUC
+      // Creative portfolio: default dark for neon glassmorphism aesthetic
       (function () {
         try {
           const stored = localStorage.getItem('theme');
-          const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-          if (stored === 'dark' || (!stored && prefersDark)) {
-            document.documentElement.classList.add('dark');
-          } else {
+          if (stored === 'light') {
             document.documentElement.classList.remove('dark');
+          } else {
+            document.documentElement.classList.add('dark');
           }
-        } catch (e) {}
+        } catch (e) { document.documentElement.classList.add('dark'); }
       })();
     </script>
   </head>
-  <body class="bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100">
+  <body class="bg-slate-50 dark:bg-[#0a0a0f] text-slate-900 dark:text-slate-100 antialiased font-sans">
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
