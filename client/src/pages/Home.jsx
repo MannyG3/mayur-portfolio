@@ -12,14 +12,29 @@ export default function Home() {
       <section className="py-12 md:py-20">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           <div className="lg:col-span-7">
-            <motion.h1
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4 }}
-              className="text-3xl md:text-4xl font-bold tracking-tight text-slate-900 dark:text-slate-100 mb-1"
-            >
-              Mayur Gund
-            </motion.h1>
+            <div className="flex items-center gap-5 mb-4">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.4 }}
+                className="relative shrink-0"
+              >
+                <div className="absolute -inset-1 rounded-full bg-gradient-to-tr from-cyan-500 via-fuchsia-500 to-emerald-500 blur-sm opacity-60" />
+                <img
+                  src="/profile.png"
+                  alt="Mayur Gund"
+                  className="relative h-20 w-20 md:h-24 md:w-24 rounded-full object-cover border-2 border-white/20 shadow-lg"
+                />
+              </motion.div>
+              <motion.h1
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4 }}
+                className="text-3xl md:text-4xl font-bold tracking-tight text-slate-900 dark:text-slate-100"
+              >
+                Mayur Gund
+              </motion.h1>
+            </div>
             <p className="text-slate-600 dark:text-slate-400 text-lg mb-4">
               <span className="text-cyan-600 dark:text-neon-cyan font-medium">Full Stack Developer</span> · Educator · AI Enthusiast
             </p>

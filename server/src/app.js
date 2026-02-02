@@ -9,6 +9,18 @@ app.use(express.json())
 const corsOrigin = process.env.CORS_ORIGIN || '*'
 app.use(cors({ origin: corsOrigin }))
 
+app.get('/', (_, res) => {
+  res.json({
+    ok: true,
+    service: 'mayur-portfolio-server',
+    routes: {
+      health: '/api/health',
+      projects: '/api/projects',
+      contact: '/api/contact'
+    }
+  })
+})
+
 app.get('/api/health', (_, res) => res.json({ ok: true }))
 app.use('/api/projects', projectsRouter)
 app.use('/api/contact', contactRouter)
