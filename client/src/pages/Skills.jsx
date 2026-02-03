@@ -113,46 +113,19 @@ function SkillLogo({ name }) {
   )
 }
 
-function LevelPill({ level }) {
-  const label = level >= 80 ? 'Strong' : level >= 65 ? 'Solid' : level >= 50 ? 'Working' : 'Basic'
-  return (
-    <span className="px-2 py-1 rounded-md bg-slate-200/60 dark:bg-white/5 text-slate-600 dark:text-slate-400 font-mono text-[11px]">
-      {label}
-    </span>
-  )
-}
-
-function SkillCard({ name, group, level }) {
+function SkillCard({ name, group }) {
   return (
     <TiltCard className="h-full">
       <div className="relative h-full rounded-2xl glass border border-slate-200 dark:border-white/10 p-5 hover-glow-magenta hover:border-fuchsia-400/30 transition-all">
-        <div className="flex items-start justify-between gap-3">
+        <div className="flex items-center gap-3">
+          <SkillLogo name={name} />
           <div className="min-w-0">
-            <div className="flex items-center gap-3">
-              <SkillLogo name={name} />
-              <div className="min-w-0">
-                <div className="text-xs font-medium uppercase tracking-wider text-slate-500 dark:text-slate-400">
-                  {group}
-                </div>
-                <div className="mt-1 font-semibold text-slate-900 dark:text-slate-100 truncate" title={name}>
-                  {name}
-                </div>
-              </div>
+            <div className="text-xs font-medium uppercase tracking-wider text-slate-500 dark:text-slate-400">
+              {group}
             </div>
-          </div>
-          <LevelPill level={level} />
-        </div>
-
-        <div className="mt-4">
-          <div className="h-2 rounded-full bg-slate-200/80 dark:bg-white/10 overflow-hidden">
-            <div
-              className="h-full rounded-full bg-gradient-to-r from-cyan-500 to-emerald-500"
-              style={{ width: `${Math.max(12, Math.min(100, level))}%` }}
-            />
-          </div>
-          <div className="mt-2 flex items-center justify-between text-[11px] font-mono text-slate-500 dark:text-slate-500">
-            <span className="truncate">Proficiency</span>
-            <span className="tabular-nums text-cyan-700 dark:text-neon-cyan">{level}%</span>
+            <div className="mt-1 font-semibold text-slate-900 dark:text-slate-100 truncate" title={name}>
+              {name}
+            </div>
           </div>
         </div>
       </div>
@@ -174,7 +147,7 @@ export default function Skills() {
     return SKILLS
       .filter(s => filter === 'All' || s.group === filter)
       .filter(s => !q || s.name.toLowerCase().includes(q))
-      .sort((a, b) => b.level - a.level || a.name.localeCompare(b.name))
+      .sort((a, b) => a.name.localeCompare(b.name))
   }, [query, filter])
 
   return (
@@ -214,7 +187,7 @@ export default function Skills() {
       <div className="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {visible.map((s, i) => (
           <Reveal key={`${s.group}-${s.name}`} delay={i * 0.03}>
-            <SkillCard name={s.name} group={s.group} level={s.level} />
+            <SkillCard name={s.name} group={s.group} />
           </Reveal>
         ))}
         {visible.length === 0 && (

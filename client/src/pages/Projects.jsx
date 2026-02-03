@@ -29,6 +29,13 @@ const fallbackProjects = [
     emoji: '⚡'
   },
   { 
+    title: 'Be My Valentine', 
+    desc: 'A fun Valentine-themed web app with interactive UI. Deployed on Vercel.', 
+    tech: ['HTML', 'CSS', 'JavaScript'], 
+    link: 'https://beemyvalentine.vercel.app', 
+    emoji: '💝'
+  },
+  { 
     title: 'Face Mask Detector', 
     desc: 'Real-time face mask detection using webcam feed with Haar Cascade classifier and TensorFlow model. Alerts when no mask detected.', 
     tech: ['Python', 'OpenCV', 'TensorFlow', 'NumPy'], 
