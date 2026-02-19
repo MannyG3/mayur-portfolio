@@ -6,6 +6,14 @@ import Reveal from '../components/Reveal'
 
 const fallbackProjects = [
   { 
+    title: 'Kettle', 
+    desc: 'Full-stack TypeScript application with PostgreSQL-backed logic and production deployment.', 
+    tech: ['TypeScript', 'PostgreSQL', 'PLpgSQL', 'CSS', 'JavaScript'], 
+    link: 'https://github.com/MannyG3/Kettle', 
+    emoji: '☕',
+    highlights: ['TypeScript-first architecture', 'PostgreSQL-backed data layer', 'Live app on Vercel']
+  },
+  { 
     title: 'Space Traffic Dashboard', 
     desc: 'Real-time satellite monitoring and collision detection system with interactive world map and WebSocket updates.', 
     tech: ['React', 'TypeScript', 'Node.js', 'Socket.IO', 'Tailwind'], 

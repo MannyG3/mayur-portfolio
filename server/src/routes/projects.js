@@ -5,6 +5,17 @@ const router = Router()
 // Static seed; replace with DB later if needed
 const projects = [
   {
+    title: 'Kettle',
+    desc: 'Full-stack TypeScript application with PostgreSQL-backed logic and a production deployment.',
+    tech: ['TypeScript', 'PostgreSQL', 'PLpgSQL', 'CSS', 'JavaScript'],
+    highlights: [
+      'TypeScript-first codebase for stronger type safety',
+      'PostgreSQL/PLpgSQL data layer and database-side logic',
+      'Live deployment available at usekettle.vercel.app'
+    ],
+    link: 'https://github.com/MannyG3/Kettle'
+  },
+  {
     title: 'Space Traffic Dashboard',
     desc: 'Real-time satellite monitoring and collision detection with live geospatial visualization.',
     tech: ['React.js', 'Node.js', 'Express.js', 'Socket.IO', 'Leaflet.js', 'TailwindCSS', 'MongoDB', 'Framer Motion'],
