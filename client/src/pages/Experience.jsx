@@ -4,18 +4,18 @@ import Reveal from '../components/Reveal'
 
 const roles = [
   {
-    title: 'Lecturer & TPO',
+    title: 'Full-Stack Developer & TPO',
     company: 'RIT Polytechnic Pune',
     status: 'present',
     period: '2024 - Present',
-    icon: '🎓',
+    icon: '💻',
     color: 'cyan',
     points: [
-      'Teaching OOP in Python, Client-Side Scripting, Data Structures',
-      'Designing industry-oriented practical sessions',
-      'Organizing placement drives and aptitude training',
-      'Managing RedHat Lab (20 PCs + network infrastructure)',
-      'Conducted AI-focused events and workshops',
+      'Built and maintained full-stack web apps using React, Node.js, and REST APIs',
+      'Led hands-on development sessions in Python, client-side scripting, and data structures',
+      'Designed industry-aligned practical projects focused on real-world problem solving',
+      'Managed placement drives, aptitude training, and employer engagement as TPO',
+      'Administered RedHat lab infrastructure and conducted AI/full-stack workshops',
     ],
   },
   {
