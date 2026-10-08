@@ -19,66 +19,42 @@ import { Section, SectionHeader } from '../components/Section'
 
 
 const SKILLS = [
-
   { name: 'React', group: 'Frontend' },
-
+  { name: 'TypeScript', group: 'Frontend' },
   { name: 'JavaScript (ES6+)', group: 'Frontend' },
-
   { name: 'HTML5', group: 'Frontend' },
-
   { name: 'CSS3', group: 'Frontend' },
-
   { name: 'TailwindCSS', group: 'Frontend' },
-
   { name: 'Bootstrap', group: 'Frontend' },
-
   { name: 'Node.js', group: 'Backend' },
-
   { name: 'Express.js', group: 'Backend' },
-
   { name: 'Flask', group: 'Backend' },
-
+  { name: 'PostgreSQL', group: 'Database' },
   { name: 'MongoDB', group: 'Database' },
-
   { name: 'MySQL', group: 'Database' },
-
   { name: 'SQLite', group: 'Database' },
-
+  { name: 'Claude', group: 'AI & Tools' },
+  { name: 'Cursor', group: 'AI & Tools' },
+  { name: 'ChatGPT', group: 'AI & Tools' },
+  { name: 'Gemini', group: 'AI & Tools' },
   { name: 'Python', group: 'Languages' },
-
   { name: 'JavaScript', group: 'Languages' },
-
-  { name: 'Java (basic)', group: 'Languages' },
-
+  { name: 'Java', group: 'Languages' },
   { name: 'Git', group: 'Tools' },
-
   { name: 'GitHub', group: 'Tools' },
-
   { name: 'VS Code', group: 'Tools' },
-
   { name: 'Postman', group: 'Tools' },
-
   { name: 'Figma', group: 'Tools' },
-
   { name: 'Canva', group: 'Tools' },
-
+  { name: 'Scikit-learn', group: 'AI & Tools' },
+  { name: 'TensorFlow', group: 'AI & Tools' },
+  { name: 'OpenCV', group: 'AI & Tools' },
   { name: 'DSA', group: 'Other' },
-
   { name: 'REST API', group: 'Other' },
-
   { name: 'JWT Auth', group: 'Other' },
-
-  { name: 'AI/ML basics', group: 'Other' },
-
-  { name: 'NLP', group: 'Other' },
-
-  { name: 'UI/UX', group: 'Other' },
-
 ]
 
-
-
-const GROUP_ORDER = ['All', 'Frontend', 'Backend', 'Database', 'Languages', 'Tools', 'Other']
+const GROUP_ORDER = ['All', 'Frontend', 'Backend', 'Database', 'AI & Tools', 'Languages', 'Tools', 'Other']
 
 
 

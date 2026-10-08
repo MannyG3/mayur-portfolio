@@ -40,7 +40,10 @@ export default function SearchDock() {
     const items = [
       ...routes,
       ...projects.map(project => ({ label: project.title, path: project.link, external: true })),
-      ...Object.values(skillGroups).flat().map(skill => ({ label: skill, path: '/skills' })),
+      ...Object.values(skillGroups).flat().map(skill => {
+        const label = typeof skill === 'string' ? skill : skill.name
+        return { label, path: '/skills' }
+      }),
       { label: profile.email, path: `mailto:${profile.email}`, external: true },
     ]
     return normalized ? items.filter(item => item.label.toLowerCase().includes(normalized)).slice(0, 8) : items.slice(0, 6)
