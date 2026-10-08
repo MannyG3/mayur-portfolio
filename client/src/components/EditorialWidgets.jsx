@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { playClickSound } from '../utils/sound'
 
 function ClockFace() {
@@ -92,22 +92,233 @@ function ClockFace() {
 }
 
 function DotMark() {
-  const dots = Array.from({ length: 144 }, (_, index) => {
-    const row = Math.floor(index / 12)
-    const column = index % 12
-    const active = (row === 1 && column > 1 && column < 10)
-      || (row === 2 && (column === 1 || column === 4 || column === 7 || column === 10))
-      || (row === 3 && (column === 1 || column === 4 || column === 7 || column === 10))
-      || (row === 4 && (column === 2 || column === 3 || column === 4 || column === 7 || column === 8 || column === 9))
-      || (row === 5 && (column === 2 || column === 3 || column === 8 || column === 9))
-      || (row === 6 && (column === 1 || column === 4 || column === 7 || column === 10))
-      || (row === 7 && (column === 1 || column === 4 || column === 7 || column === 10))
-      || (row === 8 && column > 1 && column < 10)
-    return <span key={index} className={active ? 'mark-dot is-active' : 'mark-dot'} />
-  })
+  const canvasRef = useRef(null)
 
-  return <div className="dot-mark" aria-label="Mayur Gund monogram" role="img">{dots}</div>
+  useEffect(() => {
+    const canvas = canvasRef.current
+    if (!canvas) return
+    const ctx = canvas.getContext('2d')
+    let animId
+    let width = 0
+    let height = 0
+    let particles = []
+    let bgDots = []
+    const mouse = { x: -9999, y: -9999, isOver: false }
+    let pulse = null
+
+    const init = () => {
+      const rect = canvas.getBoundingClientRect()
+      const dpr = Math.min(window.devicePixelRatio || 1, 2)
+      width = rect.width || 180
+      height = rect.height || 180
+      canvas.width = width * dpr
+      canvas.height = height * dpr
+      ctx.scale(dpr, dpr)
+
+      // Offscreen canvas to sample high quality letter 'M'
+      const offCanvas = document.createElement('canvas')
+      const sampleSize = 100
+      offCanvas.width = sampleSize
+      offCanvas.height = sampleSize
+      const offCtx = offCanvas.getContext('2d')
+      offCtx.font = '900 68px system-ui, -apple-system, sans-serif'
+      offCtx.textAlign = 'center'
+      offCtx.textBaseline = 'middle'
+      offCtx.fillStyle = '#000'
+      offCtx.fillText('M', sampleSize / 2, sampleSize / 2 + 1)
+
+      const imgData = offCtx.getImageData(0, 0, sampleSize, sampleSize).data
+      particles = []
+      bgDots = []
+
+      const step = 3.5
+      const scaleX = (width * 0.72) / sampleSize
+      const scaleY = (height * 0.72) / sampleSize
+      const offsetX = (width - sampleSize * scaleX) / 2
+      const offsetY = (height - sampleSize * scaleY) / 2
+
+      // Background matrix grid dots
+      const gridCols = 12
+      const gridRows = 12
+      const cellW = width / gridCols
+      const cellH = height / gridRows
+      for (let r = 0; r < gridRows; r++) {
+        for (let c = 0; c < gridCols; c++) {
+          bgDots.push({
+            x: c * cellW + cellW / 2,
+            y: r * cellH + cellH / 2,
+          })
+        }
+      }
+
+      for (let y = 0; y < sampleSize; y += step) {
+        for (let x = 0; x < sampleSize; x += step) {
+          const index = Math.floor(y) * sampleSize * 4 + Math.floor(x) * 4
+          const alpha = imgData[index + 3]
+          if (alpha > 120) {
+            const homeX = offsetX + x * scaleX
+            const homeY = offsetY + y * scaleY
+            particles.push({
+              homeX,
+              homeY,
+              x: homeX + (Math.random() - 0.5) * 6,
+              y: homeY + (Math.random() - 0.5) * 6,
+              vx: 0,
+              vy: 0,
+              phase: Math.random() * Math.PI * 2,
+              speed: 0.8 + Math.random() * 0.6,
+              radius: 2.1,
+            })
+          }
+        }
+      }
+    }
+
+    init()
+
+    const handleMouseMove = (e) => {
+      const rect = canvas.getBoundingClientRect()
+      mouse.x = e.clientX - rect.left
+      mouse.y = e.clientY - rect.top
+      mouse.isOver = true
+    }
+
+    const handleMouseLeave = () => {
+      mouse.isOver = false
+      mouse.x = -9999
+      mouse.y = -9999
+    }
+
+    const handleClick = (e) => {
+      const rect = canvas.getBoundingClientRect()
+      playClickSound()
+      pulse = {
+        x: e.clientX - rect.left,
+        y: e.clientY - rect.top,
+        radius: 0,
+        maxRadius: Math.max(width, height) * 0.85,
+      }
+    }
+
+    window.addEventListener('resize', init)
+    canvas.addEventListener('mousemove', handleMouseMove)
+    canvas.addEventListener('mouseleave', handleMouseLeave)
+    canvas.addEventListener('click', handleClick)
+
+    let lastTime = performance.now()
+    const render = (now) => {
+      const dt = Math.min((now - lastTime) / 1000, 0.033)
+      lastTime = now
+
+      ctx.clearRect(0, 0, width, height)
+
+      // Draw background matrix grid dots
+      const isDark = document.documentElement.classList.contains('dark')
+      ctx.fillStyle = isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.07)'
+      for (let i = 0; i < bgDots.length; i++) {
+        const bg = bgDots[i]
+        ctx.beginPath()
+        ctx.arc(bg.x, bg.y, 1.2, 0, Math.PI * 2)
+        ctx.fill()
+      }
+
+      // Update click shockwave pulse
+      if (pulse) {
+        pulse.radius += dt * 260
+        if (pulse.radius > pulse.maxRadius) {
+          pulse = null
+        }
+      }
+
+      // Update & render active monogram dots
+      const t = now * 0.0015
+      ctx.fillStyle = '#f04e15' // Brand Vermilion
+
+      for (let i = 0; i < particles.length; i++) {
+        const p = particles[i]
+
+        // 1. Organic Idle Float / Wriggle Motion
+        const idleX = p.homeX + Math.cos(t * p.speed + p.phase) * 1.6
+        const idleY = p.homeY + Math.sin(t * p.speed * 1.2 + p.phase * 1.4) * 1.6
+
+        // 2. Spring Restoring Acceleration towards home
+        const dxTarget = idleX - p.x
+        const dyTarget = idleY - p.y
+        p.vx += dxTarget * 0.075
+        p.vy += dyTarget * 0.075
+
+        // 3. Hover Scatter Repulsion (Mouse Giggle)
+        if (mouse.isOver) {
+          const dxM = p.x - mouse.x
+          const dyM = p.y - mouse.y
+          const distM = Math.sqrt(dxM * dxM + dyM * dyM)
+          const repelRadius = width * 0.35
+          if (distM < repelRadius && distM > 0) {
+            const force = (1 - distM / repelRadius) * 6.0
+            p.vx += (dxM / distM) * force
+            p.vy += (dyM / distM) * force
+          }
+        }
+
+        // 4. Click Shockwave Ripple
+        if (pulse) {
+          const dxP = p.x - pulse.x
+          const dyP = p.y - pulse.y
+          const distP = Math.sqrt(dxP * dxP + dyP * dyP)
+          const waveDist = Math.abs(distP - pulse.radius)
+          if (waveDist < 20) {
+            const force = (1 - waveDist / 20) * 8.5
+            p.vx += (dxP / (distP || 1)) * force
+            p.vy += (dyP / (distP || 1)) * force
+          }
+        }
+
+        // 5. Friction Damping & Integration
+        p.vx *= 0.81
+        p.vy *= 0.81
+        p.x += p.vx
+        p.y += p.vy
+
+        // Draw Dot
+        ctx.beginPath()
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2)
+        ctx.fill()
+      }
+
+      // Draw subtle shockwave ring on canvas
+      if (pulse) {
+        ctx.strokeStyle = `rgba(240, 78, 21, ${Math.max(0, 1 - pulse.radius / pulse.maxRadius)})`
+        ctx.lineWidth = 1.2
+        ctx.beginPath()
+        ctx.arc(pulse.x, pulse.y, pulse.radius, 0, Math.PI * 2)
+        ctx.stroke()
+      }
+
+      animId = requestAnimationFrame(render)
+    }
+
+    animId = requestAnimationFrame(render)
+
+    return () => {
+      cancelAnimationFrame(animId)
+      window.removeEventListener('resize', init)
+      canvas.removeEventListener('mousemove', handleMouseMove)
+      canvas.removeEventListener('mouseleave', handleMouseLeave)
+      canvas.removeEventListener('click', handleClick)
+    }
+  }, [])
+
+  return (
+    <div
+      className="relative w-full h-full min-h-[160px] flex items-center justify-center cursor-crosshair select-none"
+      aria-label="Mayur Gund monogram rendered as brand-colored dots that scatter away from the cursor"
+      role="img"
+    >
+      <canvas ref={canvasRef} className="w-full h-full block rounded-xl" />
+    </div>
+  )
 }
+
 
 export default function EditorialWidgets({ song }) {
   const [isPlaying, setIsPlaying] = useState(false)
