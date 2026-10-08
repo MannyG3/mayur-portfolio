@@ -16,11 +16,11 @@ export const socialLinks = [
 ]
 
 export const recentSong = {
-  title: 'FE!N (feat. Playboi Carti)',
-  artist: 'Travis Scott',
-  artwork: 'https://i.scdn.co/image/ab67616d00001e0204481c826dd292e5e4983b3f',
-  href: 'https://open.spotify.com/track/42VsgItocQwOQC3XWZ8JNA',
-  trackId: '42VsgItocQwOQC3XWZ8JNA',
+  title: 'After Hours',
+  artist: 'The Weeknd',
+  artwork: 'https://i.scdn.co/image/ab67616d0000b2738863bc11d2aa12b54f5a86d6',
+  href: 'https://open.spotify.com/track/2p8StY2vV9zQIaw7gBvA1M',
+  trackId: '2p8StY2vV9zQIaw7gBvA1M',
 }
 
 export const dailyQuotes = [
