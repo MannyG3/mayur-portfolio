@@ -8,25 +8,25 @@ export function SectionHeader({ label, title, subtitle, align = 'left' }) {
   const alignClass = align === 'center' ? 'text-center mx-auto' : ''
   const ornamentClass = align === 'center' ? 'mx-auto' : ''
   return (
-    <div className={`mb-14 md:mb-20 max-w-2xl ${alignClass}`}>
+    <div className={`mb-10 md:mb-12 max-w-2xl ${alignClass}`}>
       {label && (
-        <p className="section-label mb-4">
-          — {label} —
+        <p className="section-label mb-3">
+          {label}
         </p>
       )}
       {title && (
-        <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-ink dark:text-surface-50 leading-[1.1]">
+        <h1 className="font-display text-2xl md:text-3xl font-semibold tracking-tight text-ink dark:text-surface-50 leading-tight">
           {title}
         </h1>
       )}
       {subtitle && (
-        <p className="mt-5 text-base md:text-lg text-ink-muted dark:text-surface-400 leading-relaxed font-sans italic">
+        <p className="mt-4 text-sm md:text-base text-ink-muted dark:text-surface-400 leading-relaxed font-sans">
           {subtitle}
         </p>
       )}
       {(title || subtitle) && (
-        <div className={`mt-6 ornament max-w-xs ${ornamentClass}`} aria-hidden>
-          <span className="text-accent text-xs">◆</span>
+        <div className={`mt-5 max-w-xs border-t border-surface-300/70 dark:border-surface-700 ${ornamentClass}`} aria-hidden>
+          <span className="sr-only">Section divider</span>
         </div>
       )}
     </div>

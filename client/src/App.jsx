@@ -1,4 +1,4 @@
-import { Suspense, useEffect, useState } from 'react'
+import { Suspense } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
 import { motion } from 'framer-motion'
@@ -10,37 +10,10 @@ import Experience from './pages/Experience'
 import Contact from './pages/Contact'
 import NotFound from './pages/NotFound'
 import Backdrop from './components/Backdrop'
-import Navbar from './components/Navbar'
-import Footer from './components/Footer'
-
-function getInitialTheme() {
-  if (typeof document === 'undefined') return 'dark'
-  const stored = localStorage.getItem('theme')
-  if (stored === 'light' || stored === 'dark') return stored
-  return document.documentElement.classList.contains('dark') ? 'dark' : 'light'
-}
+import SearchDock from './components/SearchDock'
+import ReferencePlaceholder from './pages/ReferencePlaceholder'
 
 export default function App() {
-  const [theme, setTheme] = useState(() => getInitialTheme())
-  const [mounted, setMounted] = useState(false)
-
-  useEffect(() => setMounted(true), [])
-
-  useEffect(() => {
-    if (!mounted) return
-    const root = document.documentElement
-    const isDark = theme === 'dark'
-    root.classList.toggle('dark', isDark)
-    root.classList.add('theme-transition')
-    const t = setTimeout(() => root.classList.remove('theme-transition'), 300)
-    localStorage.setItem('theme', theme)
-    return () => clearTimeout(t)
-  }, [theme, mounted])
-
-  function toggleTheme() {
-    setTheme(t => (t === 'light' ? 'dark' : 'light'))
-  }
-
   return (
     <div className="min-h-screen bg-surface-100 dark:bg-surface-950 text-ink dark:text-surface-100">
       <Helmet>
@@ -50,8 +23,8 @@ export default function App() {
         <meta property="og:description" content="Full Stack Developer · Educator · AI Enthusiast" />
       </Helmet>
       <Backdrop />
-      <Navbar theme={theme} onToggleTheme={toggleTheme} />
-      <main className="container pt-20 pb-6">
+      <SearchDock />
+      <main className="container max-w-[820px] pt-8 pb-6">
         <Suspense fallback={
           <div className="py-32 flex flex-col items-center gap-3">
             <div className="h-5 w-5 border-2 border-accent border-t-transparent rounded-full animate-spin" />
@@ -70,12 +43,16 @@ export default function App() {
               <Route path="/projects" element={<Projects />} />
               <Route path="/experience" element={<Experience />} />
               <Route path="/contact" element={<Contact />} />
+              <Route path="/blogs" element={<ReferencePlaceholder title="Blogs" description="Technical writing and notes." />} />
+              <Route path="/reading" element={<ReferencePlaceholder title="Reading" description="Resources and reading list." />} />
+              <Route path="/renders" element={<ReferencePlaceholder title="Renders" description="Interactive experiments and visual studies." />} />
+              <Route path="/renders/tunnel" element={<ReferencePlaceholder title="Tunnel" description="Interactive render placeholder." />} />
+              <Route path="/renders/maze" element={<ReferencePlaceholder title="Maze" description="Interactive render placeholder." />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </motion.div>
         </Suspense>
       </main>
-      <Footer />
     </div>
   )
 }

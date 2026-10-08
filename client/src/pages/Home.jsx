@@ -1,142 +1,160 @@
-import { useState } from 'react'
-import { motion } from 'framer-motion'
-import { Link } from 'react-router-dom'
-import TerminalHero from '../components/TerminalHero'
-import BugFeatureToggle from '../components/BugFeatureToggle'
-import AvailabilityBar from '../components/JobUrgencyMeter'
-import { Badge, StatusDot } from '../components/Section'
-
-const QUICK_LINKS = [
-  { to: '/projects', label: 'Projects', desc: 'Selected works' },
-  { to: '/experience', label: 'Experience', desc: 'Three chapters' },
-  { to: '/skills', label: 'Skills', desc: 'The craft' },
-]
-
-const TECH_STACK = ['React', 'Node.js', 'TypeScript', 'MongoDB', 'Python', 'Tailwind']
-
-export default function Home() {
-  const [avatarSrc, setAvatarSrc] = useState('/profile.png')
-
-  return (
-    <>
-      <section className="pt-10 md:pt-20 pb-14 md:pb-24">
-        <div className="ornament mb-10 md:mb-14 max-w-md" aria-hidden>
-          <span className="font-display text-xs tracking-[0.3em] uppercase text-ink-faint dark:text-surface-500">Portfolio</span>
-        </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-          <div className="lg:col-span-7 order-2 lg:order-1">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, ease: 'easeOut' }}
-            >
-              <StatusDot label="Accepting new work" />
-
-              <h1 className="mt-8 font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-semibold tracking-tight text-ink dark:text-surface-50 leading-[1.0]">
-                Mayur
-                <br />
-                <span className="text-gradient">Gund</span>
-              </h1>
-
-              <p className="mt-6 text-lg md:text-xl text-ink-muted dark:text-surface-400 max-w-lg leading-relaxed font-sans italic">
-                A full stack developer who crafts scalable web applications,
-                guides aspiring engineers, and ships with quiet precision.
-              </p>
-
-              <div className="mt-6 flex flex-wrap gap-2.5">
-                <Badge>Full Stack</Badge>
-                <Badge variant="muted">Educator</Badge>
-                <Badge variant="brand">AI Enthusiast</Badge>
-              </div>
-
-              <div className="mt-10 flex flex-wrap gap-4">
-                <a href="mailto:mayurgund3333@gmail.com" className="btn-primary">
-                  Correspond
-                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
-                </a>
-                <Link to="/projects" className="btn-ghost">
-                  View works
-                </Link>
-              </div>
-
-              <div className="mt-10 max-w-sm">
-                <AvailabilityBar />
-              </div>
-            </motion.div>
-          </div>
-
-          <div className="lg:col-span-5 order-1 lg:order-2 space-y-6">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.98 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.7, delay: 0.15 }}
-              className="hidden lg:block"
-            >
-              <div className="portrait-frame mx-auto max-w-[280px]">
-                <img
-                  src={avatarSrc}
-                  alt="Mayur Gund"
-                  className="w-full aspect-[4/5] object-cover sepia-[0.2] hover:sepia-0 transition-all duration-700"
-                  onError={() => setAvatarSrc('/profile.svg')}
-                />
-              </div>
-              <p className="mt-4 text-center font-display text-sm italic text-ink-faint dark:text-surface-500">
-                Pune, Maharashtra — India
-              </p>
-            </motion.div>
-            <TerminalHero />
-          </div>
-        </div>
-      </section>
-
-      <motion.section
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.4, duration: 0.6 }}
-        className="py-10 border-y border-surface-300/60 dark:border-surface-800/80"
-      >
-        <div className="flex flex-col sm:flex-row sm:items-center gap-5">
-          <span className="font-display text-xs tracking-[0.25em] uppercase text-ink-faint dark:text-surface-500 shrink-0">
-            Instruments
-          </span>
-          <div className="flex flex-wrap gap-2">
-            {TECH_STACK.map(tech => (
-              <span key={tech} className="tag">{tech}</span>
-            ))}
-          </div>
-        </div>
-      </motion.section>
-
-      <section className="py-14 md:py-20">
-        <p className="section-label mb-8 text-center">Further reading</p>
-        <div className="grid sm:grid-cols-3 gap-5">
-          {QUICK_LINKS.map((link, i) => (
-            <motion.div
-              key={link.to}
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 * i, duration: 0.5 }}
-            >
-              <Link to={link.to} className="accent-card block p-6 group corner-brackets">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <h3 className="font-display text-xl font-semibold text-ink dark:text-surface-50 group-hover:text-accent transition-colors duration-300">
-                      {link.label}
-                    </h3>
-                    <p className="mt-1.5 font-display text-sm italic text-ink-faint dark:text-surface-500">{link.desc}</p>
-                  </div>
-                  <span className="text-accent/50 group-hover:text-accent transition-colors duration-300 text-lg">→</span>
-                </div>
-              </Link>
-            </motion.div>
-          ))}
-        </div>
-      </section>
-
-      <BugFeatureToggle />
-    </>
-  )
-}
+import { motion } from 'framer-motion'
+import { Link } from 'react-router-dom'
+import { dailyQuotes, experience, profile, projects, recentSong, skillGroups, socialLinks } from '../data/portfolio'
+import EditorialWidgets from '../components/EditorialWidgets'
+import { Arcade, EmptyReferenceSection, GithubActivity, MusicPlaceholder } from '../components/ReferenceExtras'
+
+function ExternalArrow() {
+  return <span aria-hidden className="editorial-arrow">↗</span>
+}
+
+function SectionTitle({ children }) {
+  return <h2 className="editorial-section-title">{children}</h2>
+}
+
+function ProjectRow({ project, index }) {
+  return (
+    <motion.li
+      initial={{ opacity: 0, y: 8 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-40px' }}
+      transition={{ duration: 0.35, delay: index * 0.04 }}
+      className="editorial-row"
+    >
+      <a href={project.link} target="_blank" rel="noreferrer" className="editorial-row-link">
+        <div className="editorial-row-heading">
+          <span className="editorial-row-title">{project.title}</span>
+          <ExternalArrow />
+        </div>
+        <p className="editorial-row-description">{project.desc}</p>
+        <div className="editorial-tags">
+          {project.tech.map(technology => <span key={technology}>{technology}</span>)}
+        </div>
+      </a>
+    </motion.li>
+  )
+}
+
+function ExperienceRow({ role, index }) {
+  return (
+    <motion.details
+      open={index === 0}
+      className="editorial-row editorial-experience"
+      initial={{ opacity: 0, y: 8 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-40px' }}
+      transition={{ duration: 0.35, delay: index * 0.05 }}
+    >
+      <summary className="editorial-row-link editorial-experience-summary">
+        <div>
+          <div className="editorial-row-heading">
+            <span className="editorial-row-title">{role.title} · {role.company}</span>
+            <span className="editorial-plus" aria-hidden>+</span>
+          </div>
+          <p className="editorial-row-meta">{role.period}</p>
+        </div>
+      </summary>
+      <ul className="editorial-detail-list">
+        {role.points.map(point => <li key={point}>{point}</li>)}
+      </ul>
+    </motion.details>
+  )
+}
+
+export default function Home() {
+  return (
+    <div className="editorial-home">
+      <header className="editorial-intro">
+        <div>
+          <h1>{profile.name}</h1>
+          <p className="editorial-role">{profile.title}</p>
+        </div>
+        <div className="editorial-current">
+          <h2>Currently</h2>
+          <p>{profile.about} {profile.current}</p>
+        </div>
+        <a className="editorial-email" href={`mailto:${profile.email}`}>
+          {profile.email}
+          <ExternalArrow />
+        </a>
+        <p className="editorial-location">{profile.location}</p>
+      </header>
+
+      <EditorialWidgets song={recentSong} />
+
+      <section aria-labelledby="projects-title" className="editorial-section">
+        <SectionTitle><span id="projects-title">Projects</span></SectionTitle>
+        <ul className="editorial-list">
+          {projects.map((project, index) => <ProjectRow key={project.title} project={project} index={index} />)}
+        </ul>
+        <Link to="/projects" className="editorial-more">more projects <ExternalArrow /></Link>
+      </section>
+
+      <section aria-labelledby="experience-title" className="editorial-section">
+        <SectionTitle><span id="experience-title">Experience</span></SectionTitle>
+        <ul className="editorial-list">
+          {experience.map((role, index) => <ExperienceRow key={role.title} role={role} index={index} />)}
+        </ul>
+        <Link to="/experience" className="editorial-more">more experience <ExternalArrow /></Link>
+      </section>
+
+      <section aria-labelledby="stack-title" className="editorial-section">
+        <SectionTitle><span id="stack-title">Tech stack</span></SectionTitle>
+        <div className="editorial-stack">
+          {Object.entries(skillGroups).map(([group, skills]) => (
+            <div key={group} className="editorial-stack-group">
+              <h3>{group}</h3>
+              <ul>
+                {skills.map(skill => <li key={skill}>{skill}</li>)}
+              </ul>
+            </div>
+          ))}
+        </div>
+        <Link to="/skills" className="editorial-more">all skills <ExternalArrow /></Link>
+      </section>
+
+      <EmptyReferenceSection title="Blogs" description="No blog posts are currently listed in this portfolio." action="Add posts in the portfolio data file" />
+      <EmptyReferenceSection title="Achievements" description="No achievements are currently listed in this portfolio." action="Add achievements in the portfolio data file" />
+      <EmptyReferenceSection title="Resources" description="No reading or resource links are currently listed in this portfolio." action="Add resources in the portfolio data file" />
+      <EmptyReferenceSection title="Experiments" description="No experiments or renders are currently listed in this portfolio." action="Add experiments in the portfolio data file" />
+      <GithubActivity username={profile.githubUsername} />
+      <Arcade />
+
+      <section className="editorial-section editorial-quote" aria-label="Quote of the day">
+        {(() => {
+          const dayNumber = Math.floor(Date.now() / 86400000)
+          const quote = dailyQuotes[dayNumber % dailyQuotes.length]
+          return (
+            <>
+              <p>“{quote.text}”</p>
+              <span>— {quote.author}, {quote.work}</span>
+            </>
+          )
+        })()}
+      </section>
+
+      <section aria-labelledby="contact-title" className="editorial-section editorial-contact">
+        <SectionTitle><span id="contact-title">Contact</span></SectionTitle>
+        <p>{profile.current}</p>
+        <Link to="/contact" className="editorial-email">Send a message <ExternalArrow /></Link>
+      </section>
+
+      <nav className="editorial-socials" aria-label="Social links">
+        {socialLinks.map(link => (
+          <a key={link.label} href={link.href} target={link.href.startsWith('http') ? '_blank' : undefined} rel={link.href.startsWith('http') ? 'noreferrer' : undefined}>{link.label}</a>
+        ))}
+      </nav>
+
+      <MusicPlaceholder />
+
+      <nav className="editorial-more-nav" aria-label="More pages">
+        <span>More</span>
+        <Link to="/about">About</Link>
+        <Link to="/projects">Projects</Link>
+        <Link to="/experience">Experience</Link>
+        <Link to="/skills">Skills</Link>
+        <Link to="/contact">Contact</Link>
+      </nav>
+    </div>
+  )
+}
