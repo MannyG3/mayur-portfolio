@@ -111,8 +111,13 @@ function DotMark() {
 
 export default function EditorialWidgets({ song }) {
   const [isPlaying, setIsPlaying] = useState(false)
-  const trackId = song.trackId || '42VsgItocQwOQC3XWZ8JNA'
+  const [imgSrc, setImgSrc] = useState(song.artwork)
+  const trackId = song.trackId || '2p8IUWQDrpjuFltbdgLOag'
   const spotifyEmbedUrl = `https://open.spotify.com/embed/track/${trackId}?utm_source=generator&theme=0`
+
+  useEffect(() => {
+    setImgSrc(song.artwork)
+  }, [song.artwork])
 
   return (
     <section className="editorial-widgets" aria-label="Portfolio utilities">
@@ -156,8 +161,9 @@ export default function EditorialWidgets({ song }) {
               }}
             >
               <img
-                src={song.artwork}
+                src={imgSrc}
                 alt={`${song.title} artwork`}
+                onError={() => setImgSrc('https://i.scdn.co/image/ab67616d0000b2738863bc11d2aa12b54f5aeb36')}
                 className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity grid place-items-center">

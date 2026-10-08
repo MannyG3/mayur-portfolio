@@ -18,9 +18,9 @@ export const socialLinks = [
 export const recentSong = {
   title: 'After Hours',
   artist: 'The Weeknd',
-  artwork: 'https://i.scdn.co/image/ab67616d0000b2738863bc11d2aa12b54f5a86d6',
-  href: 'https://open.spotify.com/track/2p8StY2vV9zQIaw7gBvA1M',
-  trackId: '2p8StY2vV9zQIaw7gBvA1M',
+  artwork: 'https://i.scdn.co/image/ab67616d0000b2738863bc11d2aa12b54f5aeb36',
+  href: 'https://open.spotify.com/track/2p8IUWQDrpjuFltbdgLOag',
+  trackId: '2p8IUWQDrpjuFltbdgLOag',
 }
 
 export const dailyQuotes = [
