@@ -148,11 +148,11 @@ body {
   }
 
   .editorial-widgets {
-    @apply grid w-full grid-cols-1 md:grid-cols-[2fr_1fr_1fr] gap-4 my-8;
+    @apply grid w-full grid-cols-1 md:grid-cols-[2.2fr_1fr_1fr] gap-4 my-8;
   }
 
   .recent-project-widget {
-    @apply relative grid grid-cols-[130px_1fr] gap-4 rounded-2xl border p-3.5 transition-all duration-300;
+    @apply relative rounded-2xl border p-3.5 transition-all duration-300 min-h-[192px];
     border-color: var(--border);
     background-color: var(--card);
   }
@@ -162,16 +162,8 @@ body {
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
   }
 
-  .widget-project-art {
-    @apply min-h-full overflow-hidden rounded-xl bg-neutral-900;
-  }
-
-  .widget-project-art img {
-    @apply h-full w-full object-cover;
-  }
-
   .widget-project-copy {
-    @apply relative self-center flex flex-col justify-center py-1;
+    @apply relative flex flex-col justify-center;
   }
 
   .widget-kicker {
@@ -179,18 +171,8 @@ body {
     color: var(--muted-foreground);
   }
 
-  .widget-project-copy strong {
-    @apply mt-1 text-base font-semibold leading-snug;
-    color: var(--foreground);
-  }
-
-  .widget-project-copy p {
-    @apply mt-1 text-xs line-clamp-2;
-    color: var(--muted-foreground);
-  }
-
   .widget-action {
-    @apply mt-3 inline-flex w-fit items-center gap-1.5 rounded-full px-4 py-1.5 text-xs font-mono transition-colors duration-200;
+    @apply inline-flex w-fit items-center gap-1.5 rounded-full px-4 py-1.5 text-xs font-mono transition-colors duration-200;
     background-color: var(--foreground);
     color: var(--background);
   }
@@ -211,47 +193,6 @@ body {
     @apply relative aspect-square h-full w-full max-w-none rounded-xl border;
     border-color: var(--border);
     background-color: var(--card);
-  }
-
-  .clock-tick {
-    @apply absolute inset-[6%] z-[1];
-    transform-origin: center;
-  }
-
-  .clock-tick::before {
-    content: '';
-    @apply absolute left-1/2 top-0 h-1.5 w-px -translate-x-1/2;
-    background-color: var(--border);
-  }
-
-  .clock-tick-major::before {
-    @apply h-2.5 w-0.5;
-    background-color: var(--foreground);
-  }
-
-  .clock-number {
-    @apply absolute z-10 font-mono text-xs font-semibold;
-    color: var(--foreground);
-  }
-
-  .clock-number-12 { @apply top-[8%] left-1/2 -translate-x-1/2; }
-  .clock-number-3 { @apply top-1/2 right-[9%] -translate-y-1/2; }
-  .clock-number-6 { @apply bottom-[8%] left-1/2 -translate-x-1/2; }
-  .clock-number-9 { @apply top-1/2 left-[9%] -translate-y-1/2; }
-
-  .clock-hand {
-    @apply absolute bottom-1/2 left-1/2 z-20 origin-bottom rounded-full;
-    background-color: var(--foreground);
-  }
-
-  .clock-hand-hour { @apply h-[28%] w-1.5; }
-  .clock-hand-minute { @apply h-[38%] w-1; }
-  .clock-hand-second { @apply h-[42%] w-0.5; background-color: var(--brand); }
-
-  .clock-center {
-    @apply absolute left-1/2 top-1/2 z-30 h-2 w-2 -translate-x-1/2 -translate-y-1/2 rounded-full border;
-    border-color: var(--brand);
-    background-color: var(--background);
   }
 
   .dot-mark {

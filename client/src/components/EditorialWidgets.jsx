@@ -21,7 +21,7 @@ function ClockFace() {
 
   return (
     <div className="flex flex-col items-center justify-center h-full w-full py-1">
-      <div className="relative w-full aspect-square max-w-[150px] grid place-items-center">
+      <div className="relative w-full aspect-square max-w-[145px] grid place-items-center">
         <svg viewBox="0 0 200 200" className="w-full h-full text-foreground select-none drop-shadow-sm">
           {/* Watch Outer Rim */}
           <circle cx="100" cy="100" r="95" className="fill-card stroke-border" strokeWidth="2.5" />
@@ -116,7 +116,7 @@ export default function EditorialWidgets({ song }) {
 
   return (
     <section className="editorial-widgets" aria-label="Portfolio utilities">
-      <div className="recent-project-widget flex flex-col justify-between overflow-hidden relative">
+      <div className="recent-project-widget overflow-hidden">
         {isPlaying ? (
           <div className="w-full h-full flex flex-col justify-between">
             <div className="flex items-center justify-between pb-2 mb-1 border-b border-border/40">
@@ -147,29 +147,37 @@ export default function EditorialWidgets({ song }) {
             />
           </div>
         ) : (
-          <div className="grid grid-cols-[120px_1fr] gap-4 h-full items-center">
+          <div className="flex items-center gap-4 h-full">
             <div
-              className="widget-project-art group cursor-pointer relative overflow-hidden rounded-xl bg-neutral-900 aspect-square"
+              className="group cursor-pointer relative overflow-hidden rounded-xl bg-neutral-900 h-28 w-28 shrink-0 border border-border/40"
               onClick={() => {
                 playClickSound()
                 setIsPlaying(true)
               }}
             >
-              <img src={song.artwork} alt={`${song.title} artwork`} className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105" />
+              <img
+                src={song.artwork}
+                alt={`${song.title} artwork`}
+                className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+              />
               <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity grid place-items-center">
-                <span className="h-9 w-9 rounded-full bg-brand grid place-items-center text-white text-xs pl-0.5 shadow-md">
+                <span className="h-8 w-8 rounded-full bg-brand grid place-items-center text-white text-xs pl-0.5 shadow-md">
                   ▶
                 </span>
               </div>
             </div>
-            <div className="widget-project-copy">
+            <div className="flex-1 min-w-0 flex flex-col justify-center">
               <div className="flex items-center justify-between">
                 <span className="widget-kicker">Recently played</span>
                 <span className="inline-block h-2 w-2 rounded-full bg-brand animate-ping" />
               </div>
-              <strong className="text-sm font-semibold truncate">{song.title}</strong>
-              <span className="text-xs text-muted-foreground truncate">{song.artist}</span>
-              <div className="flex items-center gap-2 mt-3">
+              <strong className="mt-1 text-sm font-semibold text-foreground truncate block" title={song.title}>
+                {song.title}
+              </strong>
+              <span className="text-xs text-muted-foreground truncate block mt-0.5">
+                {song.artist}
+              </span>
+              <div className="flex flex-wrap items-center gap-2 mt-3">
                 <button
                   type="button"
                   className="widget-action cursor-pointer"
