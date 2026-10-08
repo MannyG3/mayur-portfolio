@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { playClickSound } from '../utils/sound'
 
 function ClockFace() {
   const [now, setNow] = useState(() => new Date())
@@ -109,21 +110,89 @@ function DotMark() {
 }
 
 export default function EditorialWidgets({ song }) {
+  const [isPlaying, setIsPlaying] = useState(false)
+  const trackId = song.trackId || '42VsgItocQwOQC3XWZ8JNA'
+  const spotifyEmbedUrl = `https://open.spotify.com/embed/track/${trackId}?utm_source=generator&theme=0`
+
   return (
     <section className="editorial-widgets" aria-label="Portfolio utilities">
-      <div className="recent-project-widget">
-        <div className="widget-project-art">
-          <img src={song.artwork} alt={`${song.title} artwork`} />
-        </div>
-        <div className="widget-project-copy">
-          <span className="music-brand" aria-hidden>●</span>
-          <span className="widget-kicker">Recently played</span>
-          <strong>{song.title}</strong>
-          <span>{song.artist}</span>
-          <a className="widget-action" href={song.href} target="_blank" rel="noreferrer">
-            <span aria-hidden>▷</span> Play
-          </a>
-        </div>
+      <div className="recent-project-widget flex flex-col justify-between overflow-hidden relative">
+        {isPlaying ? (
+          <div className="w-full h-full flex flex-col justify-between">
+            <div className="flex items-center justify-between pb-2 mb-1 border-b border-border/40">
+              <span className="widget-kicker flex items-center gap-1.5 text-brand font-medium">
+                <span className="inline-block h-2 w-2 rounded-full bg-brand animate-pulse" />
+                Spotify Player
+              </span>
+              <button
+                type="button"
+                onClick={() => {
+                  playClickSound()
+                  setIsPlaying(false)
+                }}
+                className="text-[10px] font-mono text-muted-foreground hover:text-foreground px-2 py-0.5 rounded border border-border/60"
+              >
+                Close ✕
+              </button>
+            </div>
+            <iframe
+              src={spotifyEmbedUrl}
+              width="100%"
+              height="152"
+              frameBorder="0"
+              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+              loading="lazy"
+              title="Spotify Live Player"
+              className="rounded-xl shadow-sm"
+            />
+          </div>
+        ) : (
+          <div className="grid grid-cols-[120px_1fr] gap-4 h-full items-center">
+            <div
+              className="widget-project-art group cursor-pointer relative overflow-hidden rounded-xl bg-neutral-900 aspect-square"
+              onClick={() => {
+                playClickSound()
+                setIsPlaying(true)
+              }}
+            >
+              <img src={song.artwork} alt={`${song.title} artwork`} className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105" />
+              <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity grid place-items-center">
+                <span className="h-9 w-9 rounded-full bg-brand grid place-items-center text-white text-xs pl-0.5 shadow-md">
+                  ▶
+                </span>
+              </div>
+            </div>
+            <div className="widget-project-copy">
+              <div className="flex items-center justify-between">
+                <span className="widget-kicker">Recently played</span>
+                <span className="inline-block h-2 w-2 rounded-full bg-brand animate-ping" />
+              </div>
+              <strong className="text-sm font-semibold truncate">{song.title}</strong>
+              <span className="text-xs text-muted-foreground truncate">{song.artist}</span>
+              <div className="flex items-center gap-2 mt-3">
+                <button
+                  type="button"
+                  className="widget-action cursor-pointer"
+                  onClick={() => {
+                    playClickSound()
+                    setIsPlaying(true)
+                  }}
+                >
+                  <span aria-hidden>▷</span> Stream Spotify
+                </button>
+                <a
+                  className="text-xs font-mono text-muted-foreground hover:text-foreground underline decoration-dotted underline-offset-4"
+                  href={song.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  onClick={playClickSound}
+                >
+                  Open ↗
+                </a>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
       <div className="clock-widget">
         <ClockFace />
