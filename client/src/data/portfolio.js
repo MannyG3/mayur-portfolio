@@ -63,39 +63,57 @@ export const dailyQuotes = [
 export const projects = [
   {
     title: 'Kettle',
+    badge: 'TypeScript & PostgreSQL',
+    domain: 'usekettle.vercel.app',
     desc: 'Full-stack TypeScript application with PostgreSQL-backed logic and production deployment.',
     tech: ['TypeScript', 'PostgreSQL', 'PLpgSQL', 'CSS', 'JavaScript'],
     link: 'https://github.com/MannyG3/Kettle',
+    image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=800&auto=format&fit=crop',
   },
   {
     title: 'Space Traffic Dashboard',
+    badge: 'Real-time Satellite Tracker',
+    domain: 'space-traffic-dashboard.vercel.app',
     desc: 'Real-time satellite monitoring and collision detection with interactive world map and WebSocket updates.',
     tech: ['React', 'TypeScript', 'Node.js', 'Socket.IO', 'Tailwind'],
     link: 'https://space-traffic-dashboard.vercel.app',
+    image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=800&auto=format&fit=crop',
   },
   {
     title: 'Crop & Fertilizer Recommendation',
+    badge: 'ML & Scikit-learn',
+    domain: 'github.com/MannyG3/Crop-and-fertilizer-recommendation',
     desc: 'ML-powered system recommending optimal crops and fertilizers based on soil nutrients, pH, and climate data.',
     tech: ['Python', 'Scikit-learn', 'Pandas', 'NumPy', 'Streamlit'],
     link: 'https://github.com/MannyG3/Crop-and-fertilizer-recommendation',
+    image: 'https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?q=80&w=800&auto=format&fit=crop',
   },
   {
     title: 'Pokémon Search App',
+    badge: 'PokéAPI Integration',
+    domain: 'pokemonsearchapp-sandy.vercel.app',
     desc: 'Search Pokémon by name or ID using the PokéAPI. Stats, types, and sprites in a clean interface.',
     tech: ['HTML', 'CSS', 'JavaScript'],
     link: 'https://pokemonsearchapp-sandy.vercel.app',
+    image: 'https://images.unsplash.com/photo-1613771404784-3a5686aa2be3?q=80&w=800&auto=format&fit=crop',
   },
   {
     title: 'Be My Valentine',
+    badge: 'Interactive Web App',
+    domain: 'beemyvalentine.vercel.app',
     desc: 'Interactive Valentine-themed web app with playful UI. Deployed on Vercel.',
     tech: ['HTML', 'CSS', 'JavaScript'],
     link: 'https://beemyvalentine.vercel.app',
+    image: 'https://images.unsplash.com/photo-1518199266791-5375a83190b7?q=80&w=800&auto=format&fit=crop',
   },
   {
     title: 'Face Mask Detector',
+    badge: 'OpenCV & TensorFlow',
+    domain: 'github.com/MannyG3/Mask-Detector',
     desc: 'Real-time face mask detection using webcam with Haar Cascade and TensorFlow. Alerts when no mask detected.',
     tech: ['Python', 'OpenCV', 'TensorFlow', 'NumPy'],
     link: 'https://github.com/MannyG3/Mask-Detector',
+    image: 'https://images.unsplash.com/photo-1584634731339-252c581abfc5?q=80&w=800&auto=format&fit=crop',
   },
 ]
 
@@ -135,6 +153,29 @@ export const experience = [
       'Worked in agile team with sprint planning',
       'Focused on scalability and clean code practices',
     ],
+  },
+]
+
+export const education = [
+  {
+    institution: 'Ajeenkya D Y Patil University',
+    degree: 'Master of Engineering, Computer Engineering',
+    period: 'Aug 2026 – Jun 2028',
+    skills: ['Python', 'Machine Learning', 'AI', 'Deep Learning'],
+  },
+  {
+    institution: "Shri Ambabai Talim Santha's (ATS) Sanjay Bhokare Group of Institutes Miraj (SBGI)",
+    degree: 'Bachelor of Technology - BTech, Computer Engineering',
+    period: '2020 – 2023',
+    grade: '8.19',
+    skills: ['Linux', 'Computer Science', 'Web Development'],
+  },
+  {
+    institution: 'Nansaheb Mahadik Polytechnic, Peth',
+    degree: 'Diploma in Engineering, Computer Engineering',
+    period: '2017 – 2020',
+    grade: '8.0',
+    skills: ['Python', 'Android Studio', 'Java'],
   },
 ]
 
