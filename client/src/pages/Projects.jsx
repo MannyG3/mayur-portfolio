@@ -13,87 +13,69 @@ import { SectionHeader } from '../components/Section'
 
 
 const fallbackProjects = [
-
   {
-
-    title: 'Kettle',
-
-    desc: 'Full-stack TypeScript application with PostgreSQL-backed logic and production deployment.',
-
-    tech: ['TypeScript', 'PostgreSQL', 'PLpgSQL', 'CSS', 'JavaScript'],
-
-    link: 'https://github.com/MannyG3/Kettle',
-
-    highlights: ['TypeScript-first architecture', 'PostgreSQL-backed data layer', 'Live on Vercel'],
-
+    title: 'AttendanceWala',
+    desc: 'Comprehensive attendance management and tracking system for educational institutions with real-time reporting, student analytics, and cloud sync.',
+    tech: ['TypeScript', 'React', 'Node.js', 'Express', 'TailwindCSS'],
+    link: 'https://github.com/MannyG3/AttendanceWala',
+    highlights: ['Automated attendance tracking & reports', 'Role-based access control', 'Deployed live on Vercel'],
   },
-
   {
-
     title: 'Space Traffic Dashboard',
-
-    desc: 'Real-time satellite monitoring and collision detection with interactive world map and WebSocket updates.',
-
-    tech: ['React', 'TypeScript', 'Node.js', 'Socket.IO', 'Tailwind'],
-
+    desc: 'Real-time satellite monitoring and collision detection system with interactive world map, orbital visualization, and WebSocket updates.',
+    tech: ['React', 'TypeScript', 'Node.js', 'Socket.IO', 'TailwindCSS'],
     link: 'https://space-traffic-dashboard.vercel.app',
-
     highlights: ['Live satellite tracking', 'Collision detection alerts', 'Real-time WebSocket feed'],
-
   },
-
   {
-
+    title: 'myfpl.ai',
+    desc: 'AI-powered Fantasy Premier League manager assistant providing predictive player point modeling, transfer recommendations, and captaincy analysis.',
+    tech: ['TypeScript', 'React', 'Next.js', 'TailwindCSS', 'AI/LLM'],
+    link: 'https://github.com/MannyG3/myfpl.ai',
+    highlights: ['Predictive player points', 'Optimized transfer algorithm', 'Deployed live on Vercel'],
+  },
+  {
+    title: 'Training & Placement Portal',
+    desc: 'Comprehensive T&P cell web application managing student registration, placement drives, aptitude scores, and recruiter scheduling.',
+    tech: ['TypeScript', 'React', 'Node.js', 'MongoDB', 'Express'],
+    link: 'https://github.com/MannyG3/T-P-Cell',
+    highlights: ['Student profile verification', 'Automated drive status tracking', 'Deployed live on Vercel'],
+  },
+  {
+    title: 'Kettle',
+    desc: 'Full-stack TypeScript application with PostgreSQL-backed workflow logic, typed data access layer, and production deployment.',
+    tech: ['TypeScript', 'PostgreSQL', 'PLpgSQL', 'Node.js', 'Express'],
+    link: 'https://github.com/MannyG3/Kettle',
+    highlights: ['TypeScript-first architecture', 'PostgreSQL-backed data layer', 'Live on Vercel'],
+  },
+  {
+    title: 'Intellix AI Club Platform',
+    desc: 'Official platform for Intellix AI Club featuring event registration, hackathon leaderboards, project showcases, and student resources.',
+    tech: ['JavaScript', 'React', 'Node.js', 'TailwindCSS'],
+    link: 'https://github.com/MannyG3/IntellixAI-Club',
+    highlights: ['Event registration & hackathons', 'Curated AI learning resources', 'Deployed live on Vercel'],
+  },
+  {
+    title: 'Fort Weather',
+    desc: 'Real-time trek verdict engine assessing weather safety, rainfall warnings, and trail feasibility for popular Sahyadri forts in Maharashtra.',
+    tech: ['TypeScript', 'React', 'OpenWeather API', 'TailwindCSS'],
+    link: 'https://github.com/MannyG3/fortweather',
+    highlights: ['Sahyadri fort safety index', 'Micro-climate rainfall alerts', 'Open-source GitHub project'],
+  },
+  {
     title: 'Crop & Fertilizer Recommendation',
-
-    desc: 'ML-powered system recommending optimal crops and fertilizers based on soil nutrients, pH, and climate data.',
-
-    tech: ['Python', 'Scikit-learn', 'Pandas', 'NumPy', 'Streamlit'],
-
+    desc: 'Machine learning system recommending optimal crops and fertilizers based on soil N-P-K nutrients, pH, and climate data.',
+    tech: ['Python', 'Scikit-learn', 'Pandas', 'NumPy', 'Flask'],
     link: 'https://github.com/MannyG3/Crop-and-fertilizer-recommendation',
-
-    highlights: ['Random Forest model', '100% test accuracy', 'Soil analysis pipeline'],
-
+    highlights: ['Random Forest classification model', 'Soil analysis pipeline', '100% test accuracy'],
   },
-
   {
-
-    title: 'Pokémon Search App',
-
-    desc: 'Search Pokémon by name or ID using the PokéAPI. Stats, types, and sprites in a clean interface.',
-
-    tech: ['HTML', 'CSS', 'JavaScript'],
-
-    link: 'https://pokemonsearchapp-sandy.vercel.app',
-
-  },
-
-  {
-
-    title: 'Be My Valentine',
-
-    desc: 'Interactive Valentine-themed web app with playful UI. Deployed on Vercel.',
-
-    tech: ['HTML', 'CSS', 'JavaScript'],
-
-    link: 'https://beemyvalentine.vercel.app',
-
-  },
-
-  {
-
     title: 'Face Mask Detector',
-
-    desc: 'Real-time face mask detection using webcam with Haar Cascade and TensorFlow. Alerts when no mask detected.',
-
+    desc: 'Computer vision system detecting face mask compliance via real-time webcam streams using Haar Cascades and TensorFlow neural networks.',
     tech: ['Python', 'OpenCV', 'TensorFlow', 'NumPy'],
-
     link: 'https://github.com/MannyG3/Mask-Detector',
-
-    highlights: ['Real-time webcam detection', 'Audio alerts', 'Pre-trained model'],
-
+    highlights: ['Real-time webcam detection', 'Audio alerts for unmasked state', 'Deep learning classifier'],
   },
-
 ]
 
 
